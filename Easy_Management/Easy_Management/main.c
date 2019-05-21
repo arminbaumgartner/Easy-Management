@@ -26,6 +26,9 @@ int main(void)
 	DDRD = DDRD | (1<<DDD2);
 	DDRD = DDRD | (1<<DDD3);
 	
+	DDRD = DDRD | (1<<DDD7);
+	
+	
 	PORTD = PORTD | (1<<PORTD3);
 	
 	//ADC
@@ -71,10 +74,12 @@ ISR(ADC_vect)
 	if(high <= 204)
 	{
 		PORTD = PORTD &~ (1<<PORTD3);
+		PORTD = PORTD &~ (1<<PORTD7);
 	}
 	else
 	{
 		PORTD = PORTD | (1<<PORTD3);
+		PORTD = PORTD | (1<<PORTD7);
 	}
 	
 	ADCSRA = ADCSRA | (1<<ADSC);	// Wandlung starten
